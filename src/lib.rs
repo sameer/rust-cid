@@ -19,6 +19,7 @@ pub use error::{Error, Result};
 use integer_encoding::{VarIntReader, VarIntWriter};
 use std::fmt;
 use std::io::Cursor;
+use std::str::FromStr;
 
 /// Representation of a CID.
 #[derive(PartialEq, Eq, Clone, Debug)]
@@ -124,6 +125,14 @@ impl Cid {
 impl fmt::Display for Cid {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", Cid::to_string(self))
+    }
+}
+
+impl FromStr for Cid {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self> {
+        s.to_cid()
     }
 }
 
