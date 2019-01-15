@@ -40,7 +40,7 @@ pub struct Prefix {
 
 impl Cid {
     /// Create a new CID.
-    pub fn new(codec: Codec, version: Version, hash: &[u8]) -> Cid {
+    pub fn new(codec: Codec, version: Version, hash: &[u8]) -> Self {
         Cid {
             version: version,
             codec: codec,
@@ -49,12 +49,12 @@ impl Cid {
     }
 
     /// Create a new CID from raw data (binary or multibase encoded string)
-    pub fn from<T: ToCid>(data: T) -> Result<Cid> {
+    pub fn from<T: ToCid>(data: T) -> Result<Self> {
         data.to_cid()
     }
 
     /// Create a new CID from a prefix and some data.
-    pub fn new_from_prefix(prefix: &Prefix, data: &[u8]) -> Cid {
+    pub fn new_from_prefix(prefix: &Prefix, data: &[u8]) -> Self {
         let mut hash = multihash::encode(prefix.mh_type.to_owned(), data).unwrap();
         hash.truncate(prefix.mh_len + 2);
         Cid {
@@ -137,7 +137,7 @@ impl FromStr for Cid {
 }
 
 impl Prefix {
-    pub fn new_from_bytes(data: &[u8]) -> Result<Prefix> {
+    pub fn new_from_bytes(data: &[u8]) -> Result<Self> {
         let mut cur = Cursor::new(data);
 
         let raw_version = cur.read_varint()?;

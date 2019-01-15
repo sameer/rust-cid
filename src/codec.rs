@@ -11,7 +11,7 @@ macro_rules! build_codec_enum {
 
         impl Codec {
             /// Convert a number to the matching codec
-            pub fn from(raw: u64) -> Result<Codec> {
+            pub fn from(raw: u64) -> Result<Self> {
                 match raw {
                     $( $val => Ok($var), )*
                     _ => Err(Error::UnknownCodec),

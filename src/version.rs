@@ -9,7 +9,7 @@ pub enum Version {
 use Version::*;
 
 impl Version {
-    pub fn from(raw: u64) -> Result<Version> {
+    pub fn from(raw: u64) -> Result<Self> {
         match raw {
             0 => Ok(V0),
             1 => Ok(V1),

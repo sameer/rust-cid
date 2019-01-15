@@ -33,19 +33,19 @@ impl error::Error for Error {
 }
 
 impl From<io::Error> for Error {
-    fn from(_: io::Error) -> Error {
+    fn from(_: io::Error) -> Self {
         Error::ParsingError
     }
 }
 
 impl From<multibase::Error> for Error {
-    fn from(_: multibase::Error) -> Error {
+    fn from(_: multibase::Error) -> Self {
         Error::ParsingError
     }
 }
 
 impl From<multihash::Error> for Error {
-    fn from(_: multihash::Error) -> Error {
+    fn from(_: multihash::Error) -> Self {
         Error::ParsingError
     }
 }
